@@ -9,19 +9,15 @@ package com.reactnativecommunity.viewpager;
 
 import android.util.SparseArray;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.fragment.app.FragmentActivity;
-
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerModule;
-
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
@@ -29,13 +25,13 @@ import com.reactnative.community.viewpager2.widget.ViewPager2;
 import com.reactnativecommunity.viewpager.event.PageScrollEvent;
 import com.reactnativecommunity.viewpager.event.PageScrollStateChangedEvent;
 import com.reactnativecommunity.viewpager.event.PageSelectedEvent;
-
 import java.util.Map;
 
 import static com.reactnative.community.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL;
 import static com.reactnative.community.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING;
 import static com.reactnative.community.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE;
 import static com.reactnative.community.viewpager2.widget.ViewPager2.SCROLL_STATE_SETTLING;
+
 
 public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
 
@@ -56,12 +52,14 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
     @Override
     protected ViewPager2 createViewInstance(@NonNull ThemedReactContext reactContext) {
         final ViewPager2 vp = new ViewPager2(reactContext);
-        FragmentAdapter adapter = new FragmentAdapter((FragmentActivity) reactContext.getCurrentActivity());
+        FragmentAdapter adapter = new FragmentAdapter(
+                (FragmentActivity) reactContext.getCurrentActivity());
         vp.setAdapter(adapter);
         eventDispatcher = reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher();
         vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset,
+                    int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
                 eventDispatcher.dispatchEvent(
                         new PageScrollEvent(vp.getId(), position, positionOffset));
@@ -115,7 +113,8 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
 
     @Override
     public View getChildAt(ViewPager2 parent, int index) {
-        return reactChildrenViews.get(((FragmentAdapter) parent.getAdapter()).getChildViewIDAt(index));
+        return reactChildrenViews
+                .get(((FragmentAdapter) parent.getAdapter()).getChildViewIDAt(index));
     }
 
     @Override
@@ -152,7 +151,8 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
 
     @ReactProp(name = "orientation")
     public void setOrientation(ViewPager2 viewPager, String value) {
-        viewPager.setOrientation(value.equals("vertical") ? ViewPager2.ORIENTATION_VERTICAL : ORIENTATION_HORIZONTAL);
+        viewPager.setOrientation(value.equals("vertical") ? ViewPager2.ORIENTATION_VERTICAL
+                : ORIENTATION_HORIZONTAL);
     }
 
     @ReactProp(name = "overScrollMode")
@@ -171,7 +171,8 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
     public Map getExportedCustomDirectEventTypeConstants() {
         return MapBuilder.of(
                 PageScrollEvent.EVENT_NAME, MapBuilder.of("registrationName", "onPageScroll"),
-                PageScrollStateChangedEvent.EVENT_NAME, MapBuilder.of("registrationName", "onPageScrollStateChanged"),
+                PageScrollStateChangedEvent.EVENT_NAME,
+                MapBuilder.of("registrationName", "onPageScrollStateChanged"),
                 PageSelectedEvent.EVENT_NAME, MapBuilder.of("registrationName", "onPageSelected"));
     }
 
@@ -188,7 +189,8 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
     }
 
     @Override
-    public void receiveCommand(@NonNull final ViewPager2 root, int commandId, @Nullable final ReadableArray args) {
+    public void receiveCommand(@NonNull final ViewPager2 root, int commandId,
+            @Nullable final ReadableArray args) {
         super.receiveCommand(root, commandId, args);
         Assertions.assertNotNull(root);
         Assertions.assertNotNull(args);
