@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.reactnative.community.viewpager2.adapter.FragmentStateAdapter;
 
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import java.util.ArrayList;
 
 public class FragmentAdapter extends FragmentStateAdapter {

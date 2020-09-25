@@ -13,8 +13,6 @@ import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
 /**
- * Event emitted by {@link ReactViewPager} when user scrolls between pages (or when animating
- * between pages).
  *
  * Additional data provided by this event:
  *  - position - index of first page from the left that is currently visible

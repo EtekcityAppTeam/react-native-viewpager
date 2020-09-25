@@ -12,9 +12,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
-/**
- * Event emitted by {@link ReactViewPager} when user scrolling state changed.
- *
+/***
  * Additional data provided by this event:
  *  - pageScrollState - {Idle,Dragging,Settling}
  */

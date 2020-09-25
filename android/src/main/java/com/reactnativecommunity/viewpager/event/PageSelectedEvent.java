@@ -13,8 +13,6 @@ import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
 /**
- * Event emitted by {@link ReactViewPager} when selected page changes.
- *
  * Additional data provided by this event:
  *  - position - index of page that has been selected
  */
